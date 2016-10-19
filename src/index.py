@@ -157,7 +157,7 @@ def find_the_code_path(pro_id, url_path):  # 搜索代码路径
     for i in find_code_url:
         print 'find in ' + i
         find_the_code(i, pro_id)
-        time.sleep(5)
+        time.sleep(10)
     
 
 def judgeisac(pro_id):  # 查询是否已经被我AC
@@ -192,6 +192,7 @@ def start2():  # 多线程
         for t in threads:
             t.setDaemon(True)
             t.start()
+            time.sleep(5)
         t.join()
     print "All over"
 
@@ -202,4 +203,4 @@ if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('utf-8')
     login()
-    start()
+    start2()
