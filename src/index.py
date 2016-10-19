@@ -192,7 +192,6 @@ def start2():  # 多线程
         for t in threads:
             t.setDaemon(True)
             t.start()
-            time.sleep(5)
         t.join()
     print "All over"
 
