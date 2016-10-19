@@ -187,12 +187,11 @@ def start2():  # 多线程
             if(judgeisac(pro_id) == True):
                 threads.append(threading.Thread(target=find_the_code_path, args=(pro_id, from_baidu)))  # 从百度
                 threads.append(threading.Thread(target=find_the_code_path, args=(pro_id, from_bing)))  # 从必应
-        if len(threads) == 0:
+        if len(threads) == 0:   #如果返回为空
             continue
         for t in threads:
             t.setDaemon(True)
             t.start()
-            time.sleep(5)
         t.join()
     print "All over"
 
