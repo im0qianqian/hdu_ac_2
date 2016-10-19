@@ -202,4 +202,4 @@ if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('utf-8')
     login()
-    start2()
+    start()
