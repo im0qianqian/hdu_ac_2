@@ -41,7 +41,7 @@ def login():
     
     qian_id = raw_input('Please enter your username: ')
     qian_pwd = getpass.getpass('Please enter your password: ')
-    
+
     # post数据接收和处理的页面（我们要向这个页面发送我们构造的Post数据）  
     posturl = 'http://acm.hdu.edu.cn/userloginex.php?action=login'
 
@@ -53,7 +53,7 @@ def login():
     postData = {'username' : qian_id.strip(),
                 'userpass' : qian_pwd.strip()
     }
-    
+
     # 需要给Post数据编码  
     postData = urllib.urlencode(postData)
     
@@ -157,12 +157,14 @@ def find_the_code_path(pro_id, url_path):  # 搜索代码路径
     for i in find_code_url:
         print 'find in ' + i
         find_the_code(i, pro_id)
-        time.sleep(5)  # 休息5s
+        time.sleep(5)
     
 
 def judgeisac(pro_id):  # 查询是否已经被我AC
     global headers, qian_id
-    html = open('aclog.txt').read()
+    f = open('aclog.txt')
+    html = f.read()
+    f.close()
     if(html.find(pro_id) != -1):
         return False
     return True
@@ -182,13 +184,15 @@ def start2():  # 多线程
         threads = []
         for j in range(i, i + 3):
             pro_id = str(j)
-            if(judgeisac(pro_id) == True or True):
+            if(judgeisac(pro_id) == True):
                 threads.append(threading.Thread(target=find_the_code_path, args=(pro_id, from_baidu)))  # 从百度
                 threads.append(threading.Thread(target=find_the_code_path, args=(pro_id, from_bing)))  # 从必应
-        print threads
+        if len(threads) == 0:
+            continue
         for t in threads:
             t.setDaemon(True)
             t.start()
+            time.sleep(5)
         t.join()
     print "All over"
 
