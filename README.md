@@ -13,7 +13,7 @@
 - threading
 - 本地需要创建aclog.txt用来存储AC题目序号
 
-#<h4>使用方法</h4>
+#### 使用方法
 - 使用Python执行 index.py
 - 输入 username and password
 - 点击回车，(。・`ω´・)然后，开始自动刷题！
